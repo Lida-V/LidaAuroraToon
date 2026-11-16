@@ -10,6 +10,14 @@ Blender（EEVEE）用のトゥーンシェーダーです。[LidaAngelToon](http
 
 A soft toon shader for Blender (EEVEE): nacre iridescence, flowing or curtain-like aurora light, thickness-based translucency, a soft glow on the outline of hair locks, and master sliders. Built on the Blender add-on of LidaAngelToon. Japanese first; the input list is in [docs/INPUTS.md](docs/INPUTS.md).
 
+![人魚のモデルでの比べ：当てる前、当てた後、後ろ髪](docs/images/mermaid_full.jpg)
+
+![顔まわりの比べ](docs/images/mermaid_head.jpg)
+
+![オーロラと髪の光の動き](docs/images/mermaid_aurora.gif)
+
+作者の人魚のモデルに当てた例です。左が元の Principled BSDF、右が LidaAuroraToon（太陽 1 つ、色の変換 Standard、合成のにじみあり）。GIF は 8 秒ぶんを 6 fps に間引いたものです。ひれと尾びれの寄りは [docs/images/mermaid_fins.jpg](docs/images/mermaid_fins.jpg)。モデル・テクスチャ・キャラクターのデザインはこのリポジトリに含まれず、ライセンスの対象でもありません（下の「出所とライセンス」）。
+
 ![原始図形での見本](docs/images/presets.jpg)
 
 左から `shell`・`scale`・`pearl`・`gem`・`fin`・`hair_softglow`。上から 1・72・144 コマ目（24 fps）で、オーロラと髪の光が時間で移ります。原始図形に単色を置いただけの見本です（`tools/render_readme.py` で描けます）。
@@ -121,7 +129,7 @@ blender -b --factory-startup --python tests/blender_smoke.py
 
 - 土台は LidaAngelToon 0.2.1 の Blender アドオン（作者 Lida、GPL-3.0-or-later）。トゥーンの計算・輪郭線・肌や髪などのプリセットを写し、MatCap（画像）の入力は外しました。
 - このリポジトリの Python は **GPL-3.0-or-later** です（`LICENSE`、`LICENSES/GPL-3.0-or-later.txt`）。
-- キャラクターのモデル・テクスチャ・デザイン・モーションは含みません。
-- シェーダーの素材に画像生成 AI は使っていません（同梱する画像は見本の描画 1 枚だけです）。
+- キャラクターのモデル・テクスチャ・デザイン・モーションは含みません。`docs/images/mermaid_*` はキャラクターが写った紹介用の画像で、GPL の対象外です（© Lida。このリポジトリの紹介として、出典の表示を残したまま載せることはできます。キャラクターそのものの利用は許していません）。
+- シェーダーの素材に画像生成 AI は使っていません（同梱する画像は描画した見本と紹介用の画像だけです）。
 
 © 2026 Lida — <https://github.com/Lida-V/LidaAuroraToon>

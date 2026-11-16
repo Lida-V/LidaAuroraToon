@@ -11,3 +11,5 @@ First public version.
 - Master sliders on the object `LidaAuroraToon Control`.
 - Lighting with the Material Lighting nodes of Blender 5.3 (default there) or with one sun through drivers.
 - The clock is a scene property read as a View Layer attribute, so playback does not rebuild the materials.
+
+Documentation after the tag: README images of the author's mermaid model (`docs/images/mermaid_*`, not under the GPL).
