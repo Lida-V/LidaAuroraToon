@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.blend1
+# local production notes, character renders and try-out scenes (a character model is shown or used)
+AGENTS.md
+docs-internal/
+demo/
+tests/renders/
+tests/work/
+tests/mermaid_render.py
+tests/inspect_scene.py
+tests/make_sheets.py
+tools/mermaid_split_shell.py

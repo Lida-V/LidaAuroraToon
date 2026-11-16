@@ -1,0 +1,13 @@
+LidaAuroraToon
+Copyright (c) 2026 Lida
+
+The Python code in this folder (blender/lida_aurora_toon/*.py, tools/*.py and
+tests/*.py)
+is licensed under GPL-3.0-or-later. See LICENSES/GPL-3.0-or-later.txt and the
+per-file SPDX identifiers.
+
+It is derived from the Blender add-on of LidaAngelToon 0.2.1 by the same
+author (GPL-3.0-or-later), https://github.com/Lida-V/LidaAngelToon
+
+No character model, character design, texture or motion data is included
+or licensed here. The sample image in docs/images shows primitives only.
