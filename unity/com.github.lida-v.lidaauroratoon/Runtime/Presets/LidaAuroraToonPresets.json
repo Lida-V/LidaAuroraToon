@@ -1,0 +1,1426 @@
+{
+ "version": "0.3.6",
+ "note": "colours are linear (scene-referred) values, as in Blender",
+ "inputs": [
+  {
+   "blender": "Use Shade Texture",
+   "property": "_UseShadeTexture",
+   "type": "float",
+   "default": 0.0,
+   "description": "1＝影色を画像から、0＝基本色から"
+  },
+  {
+   "blender": "Shade Tint 1",
+   "property": "_ShadeTint1",
+   "type": "color",
+   "default": [
+    0.82,
+    0.8,
+    0.9
+   ],
+   "description": "1 段目の影の色味（基本色に掛ける）"
+  },
+  {
+   "blender": "Shade Shift 1",
+   "property": "_ShadeShift1",
+   "type": "float",
+   "default": 0.0,
+   "description": "1 段目の影の境目の位置（N·L、−1〜1）。大きいほど影が広い"
+  },
+  {
+   "blender": "Shade Soft 1",
+   "property": "_ShadeSoft1",
+   "type": "float",
+   "default": 0.25,
+   "description": "1 段目の境目のやわらかさ"
+  },
+  {
+   "blender": "Shade Tint 2",
+   "property": "_ShadeTint2",
+   "type": "color",
+   "default": [
+    0.88,
+    0.88,
+    0.94
+   ],
+   "description": "2 段目の影の色味（1 段目にさらに掛ける）"
+  },
+  {
+   "blender": "Shade Shift 2",
+   "property": "_ShadeShift2",
+   "type": "float",
+   "default": -0.5,
+   "description": "2 段目の境目の位置"
+  },
+  {
+   "blender": "Shade Soft 2",
+   "property": "_ShadeSoft2",
+   "type": "float",
+   "default": 0.3,
+   "description": "2 段目の境目のやわらかさ"
+  },
+  {
+   "blender": "Receive Shadow",
+   "property": "_ReceiveShadow",
+   "type": "float",
+   "default": 0.0,
+   "description": "落ち影を受ける強さ（0＝受けない）"
+  },
+  {
+   "blender": "Lit Tint",
+   "property": "_LitTint",
+   "type": "color",
+   "default": [
+    1,
+    1,
+    1
+   ],
+   "description": "明るい所の色味"
+  },
+  {
+   "blender": "Rim Color",
+   "property": "_RimColor",
+   "type": "color",
+   "default": [
+    0.9,
+    0.92,
+    1.0
+   ],
+   "description": "縁の光の色"
+  },
+  {
+   "blender": "Rim Strength",
+   "property": "_RimStrength",
+   "type": "float",
+   "default": 0.0,
+   "description": "縁の光の強さ（足す）"
+  },
+  {
+   "blender": "Rim Width",
+   "property": "_RimWidth",
+   "type": "float",
+   "default": 0.25,
+   "description": "縁の光の幅"
+  },
+  {
+   "blender": "Rim Soft",
+   "property": "_RimSoft",
+   "type": "float",
+   "default": 0.15,
+   "description": "縁の光のやわらかさ"
+  },
+  {
+   "blender": "Rim Lit Bias",
+   "property": "_RimLitBias",
+   "type": "float",
+   "default": 0.5,
+   "description": "縁の光を明るい側だけに寄せる割合（0＝全周）"
+  },
+  {
+   "blender": "Spec Color",
+   "property": "_SpecColor",
+   "type": "color",
+   "default": [
+    1,
+    1,
+    1
+   ],
+   "description": "つやの色"
+  },
+  {
+   "blender": "Spec Strength",
+   "property": "_SpecStrength",
+   "type": "float",
+   "default": 0.0,
+   "description": "つやの強さ（足す）"
+  },
+  {
+   "blender": "Spec Size",
+   "property": "_SpecSize",
+   "type": "float",
+   "default": 0.97,
+   "description": "つやの大きさ（1 に近いほど小さい）"
+  },
+  {
+   "blender": "Spec Soft",
+   "property": "_SpecSoft",
+   "type": "float",
+   "default": 0.02,
+   "description": "つやの縁のやわらかさ"
+  },
+  {
+   "blender": "Unlit",
+   "property": "_Unlit",
+   "type": "float",
+   "default": 0.0,
+   "description": "光に関係なく基本色を見せる割合（目など）"
+  },
+  {
+   "blender": "Highlight Knee",
+   "property": "_HighlightKnee",
+   "type": "float",
+   "default": 0.85,
+   "description": "明るすぎる所を 1.0 へなだらかに寄せ始める明るさ（1＝しない）"
+  },
+  {
+   "blender": "Occlusion",
+   "property": "_Occlusion",
+   "type": "float",
+   "default": 1.0,
+   "description": "奥の暗さ（焼いた AO、1＝開いている）"
+  },
+  {
+   "blender": "Occlusion Shift",
+   "property": "_OcclusionShift",
+   "type": "float",
+   "default": 0.0,
+   "description": "奥まった所で光を下げる量"
+  },
+  {
+   "blender": "Occlusion Darken",
+   "property": "_OcclusionDarken",
+   "type": "float",
+   "default": 0.0,
+   "description": "奥まった所に影 2 の色味をさらに掛ける割合"
+  },
+  {
+   "blender": "Terminator Color",
+   "property": "_TerminatorColor",
+   "type": "color",
+   "default": [
+    1.0,
+    0.75,
+    0.73
+   ],
+   "description": "明るい所から影へ移る所の細い帯の色（掛ける）"
+  },
+  {
+   "blender": "Terminator Strength",
+   "property": "_TerminatorStrength",
+   "type": "float",
+   "default": 0.0,
+   "description": "その帯の強さ"
+  },
+  {
+   "blender": "Terminator Width",
+   "property": "_TerminatorWidth",
+   "type": "float",
+   "default": 0.1,
+   "description": "その帯の幅"
+  },
+  {
+   "blender": "Base Lift",
+   "property": "_BaseLift",
+   "type": "float",
+   "default": 0.0,
+   "description": "基本色を Base Lift Color へ寄せる割合"
+  },
+  {
+   "blender": "Base Lift Color",
+   "property": "_BaseLiftColor",
+   "type": "color",
+   "default": [
+    1.0,
+    0.97,
+    0.96
+   ],
+   "description": "寄せる先の色"
+  },
+  {
+   "blender": "Base Saturation",
+   "property": "_BaseSaturation",
+   "type": "float",
+   "default": 1.0,
+   "description": "基本色の彩度（1＝そのまま）"
+  },
+  {
+   "blender": "Effect Mask",
+   "property": "_EffectMask",
+   "type": "float",
+   "default": 1.0,
+   "description": "真珠層とオーロラを出す場所の割合（画像や頂点の値をつなぐ。1＝全部）"
+  },
+  {
+   "blender": "Iri Strength",
+   "property": "_IriStrength",
+   "type": "float",
+   "default": 0.0,
+   "description": "真珠層の虹色で色味を染める強さ（明るさはほぼ変えない）"
+  },
+  {
+   "blender": "Iri Add",
+   "property": "_IriAdd",
+   "type": "float",
+   "default": 0.0,
+   "description": "真珠層の虹色を光として足す強さ（縁ほど強い）"
+  },
+  {
+   "blender": "Iri Scale",
+   "property": "_IriScale",
+   "type": "float",
+   "default": 1.2,
+   "description": "色の幅：正面から縁までに色相が何周するか"
+  },
+  {
+   "blender": "Iri Shift",
+   "property": "_IriShift",
+   "type": "float",
+   "default": 0.0,
+   "description": "色のずれ：色相の出発点（0＝赤、0.33＝緑、0.5＝水色、0.66＝青、0.83＝桃紫）"
+  },
+  {
+   "blender": "Iri Hue Range",
+   "property": "_IriHueRange",
+   "type": "float",
+   "default": 1.0,
+   "description": "色の範囲：出発点からどこまで色相を進めるか（1＝虹の全部、0.4＝となりの色まで）"
+  },
+  {
+   "blender": "Iri Saturation",
+   "property": "_IriSaturation",
+   "type": "float",
+   "default": 0.55,
+   "description": "虹色のあざやかさ"
+  },
+  {
+   "blender": "Iri Edge Bias",
+   "property": "_IriEdgeBias",
+   "type": "float",
+   "default": 0.3,
+   "description": "0＝面全体に出す、1＝縁（斜めに見る所）だけに出す"
+  },
+  {
+   "blender": "Iri Base Phase",
+   "property": "_IriBasePhase",
+   "type": "float",
+   "default": 0.0,
+   "description": "基本色の明るさで色相をずらす量（うろこ 1 枚ずつ色を変える）"
+  },
+  {
+   "blender": "Iri Grain",
+   "property": "_IriGrain",
+   "type": "float",
+   "default": 0.0,
+   "description": "粗さ：細かいむらで色相をゆらす量"
+  },
+  {
+   "blender": "Iri Grain Scale",
+   "property": "_IriGrainScale",
+   "type": "float",
+   "default": 60.0,
+   "description": "むらの細かさ"
+  },
+  {
+   "blender": "Iri Shade Keep",
+   "property": "_IriShadeKeep",
+   "type": "float",
+   "default": 0.35,
+   "description": "影の中に虹色を残す割合（0＝影では消す）"
+  },
+  {
+   "blender": "Aurora Strength",
+   "property": "_AuroraStrength",
+   "type": "float",
+   "default": 0.0,
+   "description": "オーロラの光の強さ（自分で光る。影でも消えない）"
+  },
+  {
+   "blender": "Aurora Direction",
+   "property": "_AuroraDirection",
+   "type": "vector",
+   "default": [
+    0,
+    0,
+    1
+   ],
+   "description": "帯が流れる向き（座標の中の向き）"
+  },
+  {
+   "blender": "Aurora Band Scale",
+   "property": "_AuroraBandScale",
+   "type": "float",
+   "default": 3.0,
+   "description": "帯の細かさ（向きに沿って 1 単位に何本か）"
+  },
+  {
+   "blender": "Aurora Streak Scale",
+   "property": "_AuroraStreakScale",
+   "type": "float",
+   "default": 25.0,
+   "description": "すじの細かさ（流れに沿う細いすじ）"
+  },
+  {
+   "blender": "Aurora Streak",
+   "property": "_AuroraStreak",
+   "type": "float",
+   "default": 0.6,
+   "description": "すじの濃さ（0＝帯だけ）"
+  },
+  {
+   "blender": "Aurora Distort",
+   "property": "_AuroraDistort",
+   "type": "float",
+   "default": 0.6,
+   "description": "帯のゆらぎの大きさ"
+  },
+  {
+   "blender": "Aurora Curtain",
+   "property": "_AuroraCurtain",
+   "type": "float",
+   "default": 0.0,
+   "description": "流れ方：0＝帯が向きに沿って流れる、1＝縦のひだが横へはためく（カーテン）"
+  },
+  {
+   "blender": "Aurora Sway",
+   "property": "_AuroraSway",
+   "type": "float",
+   "default": 0.5,
+   "description": "カーテンのはためきの大きさ"
+  },
+  {
+   "blender": "Aurora Noise",
+   "property": "_AuroraNoise",
+   "type": "float",
+   "default": 0.0,
+   "description": "不ぞろいさ（0＝規則的な波、1＝ノイズでひだの形と濃さがばらつく）"
+  },
+  {
+   "blender": "Aurora Sharpness",
+   "property": "_AuroraSharpness",
+   "type": "float",
+   "default": 2.0,
+   "description": "帯の細さ（大きいほど細い帯）"
+  },
+  {
+   "blender": "Aurora Speed",
+   "property": "_AuroraSpeed",
+   "type": "float",
+   "default": 0.15,
+   "description": "流れる速さ（1 秒に何本ぶん進むか）"
+  },
+  {
+   "blender": "Aurora Phase",
+   "property": "_AuroraPhase",
+   "type": "float",
+   "default": 0.0,
+   "description": "流れの位置（キーやドライバーで動かせる）"
+  },
+  {
+   "blender": "Aurora Hue Shift",
+   "property": "_AuroraHueShift",
+   "type": "float",
+   "default": 0.0,
+   "description": "色の出発点（色の帯の中の位置、0〜1）"
+  },
+  {
+   "blender": "Aurora Hue Spread",
+   "property": "_AuroraHueSpread",
+   "type": "float",
+   "default": 0.5,
+   "description": "向きに沿って色がどれだけ移るか"
+  },
+  {
+   "blender": "Aurora Tint",
+   "property": "_AuroraTint",
+   "type": "color",
+   "default": [
+    1,
+    1,
+    1
+   ],
+   "description": "オーロラの色に掛ける色"
+  },
+  {
+   "blender": "Aurora Edge Boost",
+   "property": "_AuroraEdgeBoost",
+   "type": "float",
+   "default": 0.5,
+   "description": "縁でオーロラを強める量"
+  },
+  {
+   "blender": "Opacity",
+   "property": "_Opacity",
+   "type": "float",
+   "default": 1.0,
+   "description": "正面から見た薄い所の不透明度（1＝透けない）"
+  },
+  {
+   "blender": "Edge Opacity",
+   "property": "_EdgeOpacity",
+   "type": "float",
+   "default": 1.0,
+   "description": "縁（斜めに見る所）の不透明度"
+  },
+  {
+   "blender": "Thickness",
+   "property": "_Thickness",
+   "type": "float",
+   "default": 0.0,
+   "description": "厚み（0＝薄い、1＝厚い＝透けない）。頂点の値 lida_aurora_thickness"
+  },
+  {
+   "blender": "Transmit Color",
+   "property": "_TransmitColor",
+   "type": "color",
+   "default": [
+    1.0,
+    0.85,
+    0.95
+   ],
+   "description": "裏から抜ける光の色（基本色に掛ける）"
+  },
+  {
+   "blender": "Transmit Strength",
+   "property": "_TransmitStrength",
+   "type": "float",
+   "default": 0.0,
+   "description": "裏から光が抜ける強さ（薄い所の影が明るくなる）"
+  },
+  {
+   "blender": "Aurora Alpha",
+   "property": "_AuroraAlpha",
+   "type": "float",
+   "default": 0.5,
+   "description": "オーロラが光っている所を不透明に寄せる量"
+  },
+  {
+   "blender": "Glint Strength",
+   "property": "_GlintStrength",
+   "type": "float",
+   "default": 0.0,
+   "description": "角度で動く光の筋の強さ（自分で光る。0＝出さない）"
+  },
+  {
+   "blender": "Glint Height",
+   "property": "_GlintHeight",
+   "type": "float",
+   "default": 0.3,
+   "description": "光の帯の位置：面がカメラから見てどれだけ上を向いた所に出すか（−1〜1）"
+  },
+  {
+   "blender": "Glint Width",
+   "property": "_GlintWidth",
+   "type": "float",
+   "default": 0.1,
+   "description": "光の帯の幅"
+  },
+  {
+   "blender": "Glint Streak",
+   "property": "_GlintStreak",
+   "type": "float",
+   "default": 0.85,
+   "description": "筋への分かれ方（0＝帯のまま、1＝細い筋だけ）"
+  },
+  {
+   "blender": "Glint Streak Scale",
+   "property": "_GlintStreakScale",
+   "type": "float",
+   "default": 70.0,
+   "description": "筋の細かさ"
+  },
+  {
+   "blender": "Glint Coverage",
+   "property": "_GlintCoverage",
+   "type": "float",
+   "default": 0.45,
+   "description": "光る束の割合（0＝どこも光らない、1＝全部）"
+  },
+  {
+   "blender": "Glint Patch Scale",
+   "property": "_GlintPatchScale",
+   "type": "float",
+   "default": 6.0,
+   "description": "光る束のまとまりの細かさ"
+  },
+  {
+   "blender": "Glint Band",
+   "property": "_GlintBand",
+   "type": "float",
+   "default": 1.0,
+   "description": "面の中に出る光の帯の量（0＝帯を出さず輪郭だけ）"
+  },
+  {
+   "blender": "Glint Edge",
+   "property": "_GlintEdge",
+   "type": "float",
+   "default": 0.25,
+   "description": "輪郭（斜めに見る所）に光を出す量"
+  },
+  {
+   "blender": "Glint Edge Width",
+   "property": "_GlintEdgeWidth",
+   "type": "float",
+   "default": 0.4,
+   "description": "輪郭の光の幅（大きいほど内側まで広がる）"
+  },
+  {
+   "blender": "Glint Hue Shift",
+   "property": "_GlintHueShift",
+   "type": "float",
+   "default": 0.62,
+   "description": "光の色の出発点（色の帯の中の位置、0〜1）"
+  },
+  {
+   "blender": "Glint Hue Spread",
+   "property": "_GlintHueSpread",
+   "type": "float",
+   "default": 0.3,
+   "description": "見る角度で色がどれだけ移るか"
+  },
+  {
+   "blender": "Glint Softness",
+   "property": "_GlintSoftness",
+   "type": "float",
+   "default": 0.0,
+   "description": "光の境目のやわらかさ（0＝くっきり、1＝広くぼかす）"
+  },
+  {
+   "blender": "Glint Flow",
+   "property": "_GlintFlow",
+   "type": "float",
+   "default": 0.0,
+   "description": "光る場所が時間で移る速さ（0＝動かない）"
+  },
+  {
+   "blender": "Glint Hue Vary",
+   "property": "_GlintHueVary",
+   "type": "float",
+   "default": 0.0,
+   "description": "場所ごとの色のばらつき（オーロラのように色が流れて見える量）"
+  },
+  {
+   "blender": "Glint Hue Speed",
+   "property": "_GlintHueSpeed",
+   "type": "float",
+   "default": 0.0,
+   "description": "時間で色が移る速さ（1 秒に色の帯を何周するか）"
+  },
+  {
+   "blender": "Glint White",
+   "property": "_GlintWhite",
+   "type": "float",
+   "default": 0.4,
+   "description": "光を白へ寄せる量（1＝ほぼ白い光、0＝色の光）"
+  },
+  {
+   "blender": "Glint Glow",
+   "property": "_GlintGlow",
+   "type": "float",
+   "default": 0.0,
+   "description": "光の明るさの上乗せ（1 を超えた分がにじみ（グロー）になる）"
+  }
+ ],
+ "presets": {
+  "cloth": {
+   "values": {
+    "_HighlightKnee": 0.8,
+    "_OcclusionDarken": 0.45,
+    "_OcclusionShift": 1.2,
+    "_RimColor": [
+     0.92,
+     0.94,
+     1.0
+    ],
+    "_RimLitBias": 0.4,
+    "_RimSoft": 0.15,
+    "_RimStrength": 0.08,
+    "_RimWidth": 0.25,
+    "_ShadeShift1": 0.05,
+    "_ShadeShift2": -0.75,
+    "_ShadeSoft1": 0.32,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.7,
+     0.72,
+     0.89
+    ],
+    "_ShadeTint2": [
+     0.8,
+     0.82,
+     0.93
+    ]
+   },
+   "translucent": false
+  },
+  "eye": {
+   "values": {
+    "_HighlightKnee": 0.92,
+    "_LitTint": [
+     1.04,
+     1.04,
+     1.05
+    ],
+    "_OcclusionDarken": 0.25,
+    "_ShadeShift1": -0.25,
+    "_ShadeShift2": -1.5,
+    "_ShadeSoft1": 0.4,
+    "_ShadeSoft2": 0.1,
+    "_ShadeTint1": [
+     0.84,
+     0.84,
+     0.93
+    ],
+    "_ShadeTint2": [
+     0.86,
+     0.86,
+     0.93
+    ],
+    "_Unlit": 0.6
+   },
+   "translucent": false
+  },
+  "face": {
+   "values": {
+    "_BaseLift": 0.14,
+    "_BaseLiftColor": [
+     1.0,
+     0.97,
+     0.96
+    ],
+    "_BaseSaturation": 0.87,
+    "_HighlightKnee": 0.92,
+    "_OcclusionDarken": 0.25,
+    "_OcclusionShift": 0.9,
+    "_RimColor": [
+     1.0,
+     0.92,
+     0.92
+    ],
+    "_RimLitBias": 0.6,
+    "_RimSoft": 0.14,
+    "_RimStrength": 0.05,
+    "_RimWidth": 0.22,
+    "_ShadeShift1": 0.12,
+    "_ShadeShift2": -0.75,
+    "_ShadeSoft1": 0.32,
+    "_ShadeSoft2": 0.28,
+    "_ShadeTint1": [
+     0.94,
+     0.83,
+     0.86
+    ],
+    "_ShadeTint2": [
+     0.94,
+     0.87,
+     0.9
+    ],
+    "_TerminatorColor": [
+     1.0,
+     0.84,
+     0.82
+    ],
+    "_TerminatorStrength": 0.26,
+    "_TerminatorWidth": 0.2
+   },
+   "translucent": false
+  },
+  "hair": {
+   "values": {
+    "_HighlightKnee": 0.8,
+    "_LitTint": [
+     1.04,
+     1.04,
+     1.04
+    ],
+    "_OcclusionDarken": 0.5,
+    "_OcclusionShift": 1.3,
+    "_RimColor": [
+     0.9,
+     0.93,
+     1.0
+    ],
+    "_RimLitBias": 0.4,
+    "_RimSoft": 0.15,
+    "_RimStrength": 0.12,
+    "_RimWidth": 0.26,
+    "_ShadeShift1": 0.08,
+    "_ShadeShift2": -0.7,
+    "_ShadeSoft1": 0.3,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.82,
+     0.82,
+     0.91
+    ],
+    "_ShadeTint2": [
+     0.83,
+     0.83,
+     0.9
+    ],
+    "_UseShadeTexture": 0.0
+   },
+   "translucent": false
+  },
+  "metal": {
+   "values": {
+    "_HighlightKnee": 0.9,
+    "_OcclusionDarken": 0.25,
+    "_OcclusionShift": 0.6,
+    "_RimColor": [
+     0.95,
+     0.97,
+     1.0
+    ],
+    "_RimLitBias": 0.3,
+    "_RimSoft": 0.14,
+    "_RimStrength": 0.1,
+    "_RimWidth": 0.25,
+    "_ShadeShift1": 0.1,
+    "_ShadeShift2": -0.4,
+    "_ShadeSoft1": 0.25,
+    "_ShadeSoft2": 0.28,
+    "_ShadeTint1": [
+     0.74,
+     0.75,
+     0.88
+    ],
+    "_ShadeTint2": [
+     0.83,
+     0.83,
+     0.94
+    ],
+    "_SpecSize": 0.95,
+    "_SpecSoft": 0.02,
+    "_SpecStrength": 0.3
+   },
+   "translucent": false
+  },
+  "mouth": {
+   "values": {
+    "_OcclusionDarken": 0.25,
+    "_ShadeShift1": 0.0,
+    "_ShadeShift2": -0.55,
+    "_ShadeSoft1": 0.35,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.88,
+     0.75,
+     0.78
+    ],
+    "_ShadeTint2": [
+     0.93,
+     0.9,
+     0.91
+    ],
+    "_Unlit": 0.2
+   },
+   "translucent": false
+  },
+  "nail": {
+   "values": {
+    "_OcclusionDarken": 0.2,
+    "_OcclusionShift": 0.5,
+    "_ShadeShift1": 0.05,
+    "_ShadeShift2": -0.6,
+    "_ShadeSoft1": 0.3,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.9,
+     0.8,
+     0.83
+    ],
+    "_ShadeTint2": [
+     0.93,
+     0.9,
+     0.91
+    ],
+    "_SpecSize": 0.96,
+    "_SpecSoft": 0.02,
+    "_SpecStrength": 0.18
+   },
+   "translucent": false
+  },
+  "skin": {
+   "values": {
+    "_BaseLift": 0.16,
+    "_BaseLiftColor": [
+     1.0,
+     0.97,
+     0.96
+    ],
+    "_BaseSaturation": 0.85,
+    "_HighlightKnee": 0.92,
+    "_OcclusionDarken": 0.35,
+    "_OcclusionShift": 1.0,
+    "_RimColor": [
+     1.0,
+     0.9,
+     0.9
+    ],
+    "_RimLitBias": 0.5,
+    "_RimSoft": 0.15,
+    "_RimStrength": 0.08,
+    "_RimWidth": 0.25,
+    "_ShadeShift1": 0.05,
+    "_ShadeShift2": -0.75,
+    "_ShadeSoft1": 0.32,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.91,
+     0.82,
+     0.85
+    ],
+    "_ShadeTint2": [
+     0.92,
+     0.86,
+     0.9
+    ],
+    "_TerminatorColor": [
+     1.0,
+     0.82,
+     0.8
+    ],
+    "_TerminatorStrength": 0.34,
+    "_TerminatorWidth": 0.14
+   },
+   "translucent": false
+  },
+  "shell": {
+   "values": {
+    "_HighlightKnee": 0.86,
+    "_ShadeShift1": 0.02,
+    "_ShadeShift2": -0.7,
+    "_ShadeSoft1": 0.34,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.8,
+     0.76,
+     0.93
+    ],
+    "_ShadeTint2": [
+     0.86,
+     0.84,
+     0.95
+    ],
+    "_RimColor": [
+     0.95,
+     0.92,
+     1.0
+    ],
+    "_RimStrength": 0.12,
+    "_RimWidth": 0.28,
+    "_RimSoft": 0.16,
+    "_RimLitBias": 0.3,
+    "_SpecStrength": 0.22,
+    "_SpecSize": 0.93,
+    "_SpecSoft": 0.05,
+    "_SpecColor": [
+     1.0,
+     0.97,
+     1.0
+    ],
+    "_IriStrength": 0.55,
+    "_IriAdd": 0.12,
+    "_IriScale": 1.0,
+    "_IriShift": 0.45,
+    "_IriHueRange": 0.5,
+    "_IriSaturation": 0.5,
+    "_IriEdgeBias": 0.15,
+    "_IriBasePhase": 0.7,
+    "_IriGrain": 0.06,
+    "_IriGrainScale": 90.0,
+    "_IriShadeKeep": 0.4
+   },
+   "translucent": false
+  },
+  "fin": {
+   "values": {
+    "_HighlightKnee": 0.88,
+    "_ShadeShift1": 0.0,
+    "_ShadeShift2": -0.75,
+    "_ShadeSoft1": 0.4,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.82,
+     0.8,
+     0.95
+    ],
+    "_ShadeTint2": [
+     0.9,
+     0.88,
+     0.96
+    ],
+    "_RimColor": [
+     0.86,
+     0.95,
+     1.0
+    ],
+    "_RimStrength": 0.28,
+    "_RimWidth": 0.3,
+    "_RimSoft": 0.2,
+    "_RimLitBias": 0.0,
+    "_IriStrength": 0.3,
+    "_IriAdd": 0.08,
+    "_IriScale": 1.0,
+    "_IriShift": 0.42,
+    "_IriHueRange": 0.5,
+    "_IriSaturation": 0.45,
+    "_IriEdgeBias": 0.4,
+    "_IriShadeKeep": 0.7,
+    "_AuroraStrength": 0.6,
+    "_AuroraDirection": [
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "_AuroraBandScale": 3.0,
+    "_AuroraStreakScale": 45.0,
+    "_AuroraStreak": 0.65,
+    "_AuroraDistort": 0.7,
+    "_AuroraSharpness": 1.0,
+    "_AuroraSpeed": 0.45,
+    "_AuroraCurtain": 1.0,
+    "_AuroraSway": 1.5,
+    "_AuroraNoise": 1.0,
+    "_AuroraHueSpread": 0.9,
+    "_AuroraHueShift": 0.15,
+    "_AuroraEdgeBoost": 1.0,
+    "_AuroraAlpha": 0.9,
+    "_Opacity": 0.62,
+    "_EdgeOpacity": 0.97,
+    "_TransmitStrength": 0.75,
+    "_TransmitColor": [
+     1.0,
+     0.9,
+     0.97
+    ]
+   },
+   "translucent": true
+  },
+  "scale": {
+   "values": {
+    "_HighlightKnee": 0.86,
+    "_ShadeShift1": 0.04,
+    "_ShadeShift2": -0.7,
+    "_ShadeSoft1": 0.3,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.78,
+     0.74,
+     0.93
+    ],
+    "_ShadeTint2": [
+     0.85,
+     0.83,
+     0.95
+    ],
+    "_RimColor": [
+     0.9,
+     0.93,
+     1.0
+    ],
+    "_RimStrength": 0.14,
+    "_RimWidth": 0.26,
+    "_RimSoft": 0.15,
+    "_RimLitBias": 0.3,
+    "_SpecStrength": 0.18,
+    "_SpecSize": 0.9,
+    "_SpecSoft": 0.06,
+    "_SpecColor": [
+     0.95,
+     0.97,
+     1.0
+    ],
+    "_IriStrength": 0.5,
+    "_IriAdd": 0.1,
+    "_IriScale": 1.1,
+    "_IriShift": 0.45,
+    "_IriHueRange": 0.5,
+    "_IriSaturation": 0.5,
+    "_IriEdgeBias": 0.1,
+    "_IriBasePhase": 1.6,
+    "_IriGrain": 0.1,
+    "_IriGrainScale": 70.0,
+    "_IriShadeKeep": 0.45,
+    "_AuroraStrength": 0.3,
+    "_AuroraDirection": [
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "_AuroraBandScale": 2.0,
+    "_AuroraStreak": 0.35,
+    "_AuroraStreakScale": 30.0,
+    "_AuroraSharpness": 1.8,
+    "_AuroraSpeed": 0.3,
+    "_AuroraCurtain": 1.0,
+    "_AuroraSway": 1.5,
+    "_AuroraNoise": 1.0,
+    "_AuroraHueSpread": 0.9,
+    "_AuroraHueShift": 0.15
+   },
+   "translucent": false
+  },
+  "pearl": {
+   "values": {
+    "_HighlightKnee": 0.9,
+    "_ShadeShift1": -0.05,
+    "_ShadeShift2": -0.75,
+    "_ShadeSoft1": 0.4,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.84,
+     0.8,
+     0.92
+    ],
+    "_ShadeTint2": [
+     0.9,
+     0.88,
+     0.95
+    ],
+    "_RimColor": [
+     1.0,
+     0.95,
+     1.0
+    ],
+    "_RimStrength": 0.18,
+    "_RimWidth": 0.3,
+    "_RimSoft": 0.2,
+    "_RimLitBias": 0.2,
+    "_SpecStrength": 0.45,
+    "_SpecSize": 0.94,
+    "_SpecSoft": 0.035,
+    "_IriStrength": 0.4,
+    "_IriAdd": 0.2,
+    "_IriScale": 0.9,
+    "_IriShift": 0.42,
+    "_IriHueRange": 0.55,
+    "_IriSaturation": 0.45,
+    "_IriEdgeBias": 0.6,
+    "_IriShadeKeep": 0.6
+   },
+   "translucent": false
+  },
+  "gem": {
+   "values": {
+    "_HighlightKnee": 0.9,
+    "_Unlit": 0.3,
+    "_ShadeShift1": 0.0,
+    "_ShadeShift2": -0.45,
+    "_ShadeSoft1": 0.25,
+    "_ShadeSoft2": 0.28,
+    "_ShadeTint1": [
+     0.76,
+     0.8,
+     0.94
+    ],
+    "_ShadeTint2": [
+     0.88,
+     0.88,
+     0.96
+    ],
+    "_RimColor": [
+     0.85,
+     0.92,
+     1.0
+    ],
+    "_RimStrength": 0.15,
+    "_RimWidth": 0.3,
+    "_RimSoft": 0.15,
+    "_RimLitBias": 0.0,
+    "_SpecStrength": 0.55,
+    "_SpecSize": 0.96,
+    "_SpecSoft": 0.015,
+    "_IriStrength": 0.3,
+    "_IriAdd": 0.3,
+    "_IriScale": 1.6,
+    "_IriShift": 0.5,
+    "_IriSaturation": 0.6,
+    "_IriEdgeBias": 0.5,
+    "_IriShadeKeep": 0.8
+   },
+   "translucent": false
+  },
+  "hair_aurora": {
+   "values": {
+    "_HighlightKnee": 0.8,
+    "_LitTint": [
+     1.04,
+     1.04,
+     1.04
+    ],
+    "_OcclusionDarken": 0.5,
+    "_OcclusionShift": 1.3,
+    "_RimColor": [
+     0.9,
+     0.93,
+     1.0
+    ],
+    "_RimLitBias": 0.4,
+    "_RimSoft": 0.15,
+    "_RimStrength": 0.12,
+    "_RimWidth": 0.26,
+    "_ShadeShift1": 0.08,
+    "_ShadeShift2": -0.7,
+    "_ShadeSoft1": 0.3,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.82,
+     0.82,
+     0.91
+    ],
+    "_ShadeTint2": [
+     0.83,
+     0.83,
+     0.9
+    ],
+    "_UseShadeTexture": 0.0,
+    "_AuroraStrength": 0.3,
+    "_AuroraDirection": [
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "_AuroraBandScale": 1.6,
+    "_AuroraStreakScale": 55.0,
+    "_AuroraStreak": 0.75,
+    "_AuroraDistort": 0.9,
+    "_AuroraSharpness": 2.6,
+    "_AuroraSpeed": 0.4,
+    "_AuroraCurtain": 1.0,
+    "_AuroraSway": 1.5,
+    "_AuroraNoise": 1.0,
+    "_AuroraHueSpread": 0.7,
+    "_AuroraHueShift": 0.2,
+    "_AuroraEdgeBoost": 0.4
+   },
+   "translucent": false
+  },
+  "hair_glint": {
+   "values": {
+    "_HighlightKnee": 0.8,
+    "_LitTint": [
+     1.04,
+     1.04,
+     1.04
+    ],
+    "_OcclusionDarken": 0.5,
+    "_OcclusionShift": 1.3,
+    "_RimColor": [
+     0.9,
+     0.93,
+     1.0
+    ],
+    "_RimLitBias": 0.4,
+    "_RimSoft": 0.15,
+    "_RimStrength": 0.12,
+    "_RimWidth": 0.26,
+    "_ShadeShift1": 0.08,
+    "_ShadeShift2": -0.7,
+    "_ShadeSoft1": 0.3,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.82,
+     0.82,
+     0.91
+    ],
+    "_ShadeTint2": [
+     0.83,
+     0.83,
+     0.9
+    ],
+    "_UseShadeTexture": 0.0,
+    "_AuroraStrength": 0.3,
+    "_AuroraDirection": [
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "_AuroraBandScale": 1.6,
+    "_AuroraStreakScale": 55.0,
+    "_AuroraStreak": 0.75,
+    "_AuroraDistort": 0.9,
+    "_AuroraSharpness": 2.6,
+    "_AuroraSpeed": 0.4,
+    "_AuroraCurtain": 1.0,
+    "_AuroraSway": 1.5,
+    "_AuroraNoise": 1.0,
+    "_AuroraHueSpread": 0.7,
+    "_AuroraHueShift": 0.2,
+    "_AuroraEdgeBoost": 0.4,
+    "_GlintStrength": 1.8,
+    "_GlintHeight": 0.3,
+    "_GlintWidth": 0.22,
+    "_GlintStreak": 0.85,
+    "_GlintStreakScale": 70.0,
+    "_GlintCoverage": 0.6,
+    "_GlintPatchScale": 6.0,
+    "_GlintEdge": 0.25,
+    "_GlintHueShift": 0.42,
+    "_GlintHueSpread": 0.5,
+    "_GlintWhite": 0.35
+   },
+   "translucent": false
+  },
+  "hair_rimglow": {
+   "values": {
+    "_HighlightKnee": 0.8,
+    "_LitTint": [
+     1.04,
+     1.04,
+     1.04
+    ],
+    "_OcclusionDarken": 0.5,
+    "_OcclusionShift": 1.3,
+    "_RimColor": [
+     0.9,
+     0.93,
+     1.0
+    ],
+    "_RimLitBias": 0.4,
+    "_RimSoft": 0.15,
+    "_RimStrength": 0.12,
+    "_RimWidth": 0.26,
+    "_ShadeShift1": 0.08,
+    "_ShadeShift2": -0.7,
+    "_ShadeSoft1": 0.3,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.82,
+     0.82,
+     0.91
+    ],
+    "_ShadeTint2": [
+     0.83,
+     0.83,
+     0.9
+    ],
+    "_UseShadeTexture": 0.0,
+    "_AuroraStrength": 0.3,
+    "_AuroraDirection": [
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "_AuroraBandScale": 1.6,
+    "_AuroraStreakScale": 55.0,
+    "_AuroraStreak": 0.75,
+    "_AuroraDistort": 0.9,
+    "_AuroraSharpness": 2.6,
+    "_AuroraSpeed": 0.4,
+    "_AuroraCurtain": 1.0,
+    "_AuroraSway": 1.5,
+    "_AuroraNoise": 1.0,
+    "_AuroraHueSpread": 0.7,
+    "_AuroraHueShift": 0.2,
+    "_AuroraEdgeBoost": 0.4,
+    "_GlintStrength": 1.0,
+    "_GlintBand": 0.0,
+    "_GlintEdge": 1.0,
+    "_GlintEdgeWidth": 0.4,
+    "_GlintGlow": 1.6,
+    "_GlintStreak": 0.0,
+    "_GlintCoverage": 0.6,
+    "_GlintPatchScale": 4.0,
+    "_GlintHueShift": 0.6,
+    "_GlintHueSpread": 0.4,
+    "_GlintWhite": 0.75
+   },
+   "translucent": false
+  },
+  "hair_softglow": {
+   "values": {
+    "_HighlightKnee": 0.8,
+    "_LitTint": [
+     1.04,
+     1.04,
+     1.04
+    ],
+    "_OcclusionDarken": 0.5,
+    "_OcclusionShift": 1.3,
+    "_RimColor": [
+     0.9,
+     0.93,
+     1.0
+    ],
+    "_RimLitBias": 0.4,
+    "_RimSoft": 0.15,
+    "_RimStrength": 0.12,
+    "_RimWidth": 0.26,
+    "_ShadeShift1": 0.08,
+    "_ShadeShift2": -0.7,
+    "_ShadeSoft1": 0.3,
+    "_ShadeSoft2": 0.3,
+    "_ShadeTint1": [
+     0.82,
+     0.82,
+     0.91
+    ],
+    "_ShadeTint2": [
+     0.83,
+     0.83,
+     0.9
+    ],
+    "_UseShadeTexture": 0.0,
+    "_AuroraStrength": 0.3,
+    "_AuroraDirection": [
+     0.0,
+     0.0,
+     -1.0
+    ],
+    "_AuroraBandScale": 1.6,
+    "_AuroraStreakScale": 55.0,
+    "_AuroraStreak": 0.75,
+    "_AuroraDistort": 0.9,
+    "_AuroraSharpness": 2.6,
+    "_AuroraSpeed": 0.4,
+    "_AuroraCurtain": 1.0,
+    "_AuroraSway": 1.5,
+    "_AuroraNoise": 1.0,
+    "_AuroraHueSpread": 0.7,
+    "_AuroraHueShift": 0.2,
+    "_AuroraEdgeBoost": 0.4,
+    "_GlintStrength": 1.9,
+    "_GlintBand": 0.0,
+    "_GlintEdge": 1.0,
+    "_GlintEdgeWidth": 0.6,
+    "_GlintGlow": 0.6,
+    "_GlintStreak": 0.0,
+    "_GlintCoverage": 0.5,
+    "_GlintPatchScale": 4.0,
+    "_GlintHueShift": 0.45,
+    "_GlintHueSpread": 0.5,
+    "_GlintWhite": 0.1,
+    "_GlintHueVary": 0.7,
+    "_GlintHueSpeed": 0.08,
+    "_GlintSoftness": 2.0,
+    "_GlintFlow": 0.3
+   },
+   "translucent": false
+  }
+ },
+ "levels": {
+  "Aurora": {
+   "default": 1.0,
+   "max": 3.0
+  },
+  "Aurora Speed": {
+   "default": 1.0,
+   "max": 5.0
+  },
+  "Iridescence": {
+   "default": 1.0,
+   "max": 3.0
+  },
+  "Glint": {
+   "default": 1.0,
+   "max": 3.0
+  },
+  "Glint Color": {
+   "default": 1.0,
+   "max": 2.0
+  },
+  "Glint Hue": {
+   "default": 0.0,
+   "max": 1.0
+  },
+  "Glint Speed": {
+   "default": 1.0,
+   "max": 5.0
+  },
+  "Shadows": {
+   "default": 0.0,
+   "max": 1.0
+  }
+ }
+}

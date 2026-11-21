@@ -9,6 +9,11 @@ per-file SPDX identifiers.
 It is derived from the Blender add-on of LidaAngelToon 0.2.1 by the same
 author (GPL-3.0-or-later), https://github.com/Lida-V/LidaAngelToon
 
+The Unity version (unity/: shaders, HLSL, C#, the preset JSON; and
+tests/unity_compare/*.cs) is licensed under the Lida Attribution License 1.1,
+see LICENSES/Lida-Attribution-1.1.txt and the per-file SPDX identifiers, so that
+games and avatars that include it are not treated as GPL works.
+
 No character model, character design, texture or motion data is included
 or licensed here. docs/images/presets.jpg shows primitives only.
 

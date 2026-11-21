@@ -1,0 +1,13 @@
+{
+  "name": "com.github.lida-v.lidaauroratoon",
+  "version": "0.1.0",
+  "displayName": "LidaAuroraToon",
+  "description": "Soft toon shader for URP with nacre iridescence, aurora light, translucency and an outline glint. The Unity port of the Blender node group LidaAuroraToon 0.3.6 (same math).",
+  "unity": "6000.0",
+  "author": { "name": "Lida", "url": "https://github.com/Lida-V/LidaAuroraToon" },
+  "license": "LicenseRef-Lida-Attribution-1.1",
+  "dependencies": {
+    "com.unity.render-pipelines.universal": "17.0.0"
+  },
+  "keywords": ["toon", "urp", "shader", "aurora", "iridescence"]
+}

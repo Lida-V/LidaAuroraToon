@@ -31,7 +31,8 @@ A soft toon shader for Blender (EEVEE): nacre iridescence, flowing or curtain-li
 | Blender 5.2 以前 | 未確認。灯りは自動で「太陽 1 つをドライバーで読む方式」になります |
 | アドオンとしての導入 | 未確認（下の「導入せずに使う」は確認済み） |
 | Cycles | 未対応（EEVEE 専用） |
-| VRM・Unity・Unreal Engine | 未対応。VRM は MToon になり、この見え方は持って行けません |
+| Unity 6000.6 / URP 17.6 | `unity/` のパッケージ（0.1.0、未公開の試作）。原始図形とキャラクターモデルで、Blender と同じ画角・同じ光の絵を比べて確認（下の「Unity 版」） |
+| VRM・Unreal Engine | 未対応。VRM のファイルの中の材質は MToon か PBR になり、この見え方は持って行けません（Unity では読み込んだ後に Unity 版の材質へ置き換えます） |
 
 色の変換は Standard で値を決めています（AgX では淡くなります）。
 
@@ -117,6 +118,14 @@ shader.restore_material(mat, remove_nodes=True)
 - 半透明は `BLENDED`（同じ物体の一番手前の面だけ描く）です。重なった別の物体との前後は、物体単位で決まります。
 - 元の材質が Alpha の画像を持つときは、その透けにプリセットの `Opacity` が重なります。画像の値の範囲を見て `Opacity` を上げてください。
 
+## Unity 版
+
+`unity/com.github.lida-v.lidaauroratoon/` は URP 用のパッケージです（Unity 6000.6 / URP 17.6 で確認）。Blender のノード群と同じ計算を HLSL で書き、オーロラのゆらぎに使う Blender のノイズもそのまま移しました（4000 点で最大 1.5e-5 の差、`tools/check_noise_port.py`）。入力の名前・既定値・プリセットは `tools/make_unity_shader.py` が Blender 側から作るので、Blender とずれません。
+
+- 原始図形 8 種を同じ光・同じ画角・同じ時刻で描いた差は、画素の平均 1.1／255（`tests/unity_compare/`）。
+- Blender の制作ファイルからは `tools/export_unity_spec.py` で材質の値・画像・頂点の値を書き出し、Unity のエディターで `LidaAuroraToonSpec.Apply` が材質を作ります。
+- にじみは URP の Bloom です（しきい値 1.37 で、Blender のしきい値 1 と同じ所から効きます）。使い方と違いはパッケージの README。
+
 ## 試験
 
 ```
@@ -129,6 +138,7 @@ blender -b --factory-startup --python tests/blender_smoke.py
 
 - 土台は LidaAngelToon 0.2.1 の Blender アドオン（作者 Lida、GPL-3.0-or-later）。トゥーンの計算・輪郭線・肌や髪などのプリセットを写し、MatCap（画像）の入力は外しました。
 - このリポジトリの Python は **GPL-3.0-or-later** です（`LICENSE`、`LICENSES/GPL-3.0-or-later.txt`）。
+- Unity 版（`unity/` のシェーダー・HLSL・C#・プリセットの JSON、`tests/unity_compare/*.cs`）は **Lida Attribution License 1.1** です（`LICENSES/Lida-Attribution-1.1.txt`）。組み込んだゲームやアバターが GPL の扱いにならないようにするためです。
 - キャラクターのモデル・テクスチャ・デザイン・モーションは含みません。`docs/images/mermaid_*` はキャラクターが写った紹介用の画像で、GPL の対象外です（© Lida。このリポジトリの紹介として、出典の表示を残したまま載せることはできます。キャラクターそのものの利用は許していません）。
 - シェーダーの素材に画像生成 AI は使っていません（同梱する画像は描画した見本と紹介用の画像だけです）。
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Unity (URP) version 0.1.0 in `unity/com.github.lida-v.lidaauroratoon` (Lida Attribution 1.1): the same math in HLSL, Blender's 4D noise ported exactly, a component for the master levels / clock / glow, materials built from a Blender export.
+- `tools/export_unity_spec.py` (what Unity needs from a blend), `tools/make_unity_shader.py` (Unity properties and presets from the Blender inputs), `tools/check_noise_port.py`, `tests/unity_compare/` (Blender vs Unity on primitives).
+
 ## 0.3.6 — 2026-11-16
 
 First public version.
